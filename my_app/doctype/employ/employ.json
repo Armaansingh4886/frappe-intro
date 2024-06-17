@@ -12,6 +12,7 @@
   {
    "fieldname": "name1",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Name",
    "link_filters": "[[\"Employee\",\"type\",\"=\",\"Instructor\"]]",
    "options": "Employee"
@@ -20,7 +21,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-06-17 13:55:02.926193",
+ "modified": "2024-06-17 16:40:40.935312",
  "modified_by": "Administrator",
  "module": "my_app",
  "name": "employ",
