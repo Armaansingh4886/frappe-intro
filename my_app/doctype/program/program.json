@@ -15,13 +15,15 @@
   "status",
   "instructor",
   "participants",
-  "courses"
+  "courses",
+  "check"
  ],
  "fields": [
   {
    "fieldname": "program_name",
    "fieldtype": "Data",
    "label": "Program Name",
+   "read_only": 1,
    "unique": 1
   },
   {
@@ -75,11 +77,17 @@
    "fieldtype": "Table",
    "label": "Courses",
    "options": "courses"
+  },
+  {
+   "default": "0",
+   "fieldname": "check",
+   "fieldtype": "Check",
+   "label": "check"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-17 16:41:28.670253",
+ "modified": "2024-06-19 17:31:18.714040",
  "modified_by": "Administrator",
  "module": "my_app",
  "name": "Program",

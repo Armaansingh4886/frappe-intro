@@ -9,7 +9,11 @@ from datetime import datetime
 class student(Document):
 	pass
 	def validate(self):
-		self.full_name = f'{self.first_name} {self.middel_name or ""} {self.last_name or ""}'
+		if  not self.isactive:
+			self.full_name = f'{self.first_name}'
+		else:
+			self.full_name = f'{self.first_name} {self.middel_name or ""} {self.last_name or ""}'
+			
 		if(self.date_of_birth):
 			today = datetime.today()
 			dob = datetime.strptime(self.date_of_birth,"%Y-%m-%d")

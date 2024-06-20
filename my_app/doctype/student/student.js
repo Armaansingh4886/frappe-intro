@@ -1,6 +1,6 @@
 // Copyright (c) 2024, abc and contributors
 // For license information, please see license.txt
-
+frappe.require('my_app/public/js/student_list.js');
 frappe.ui.form.on("student", {
     // last_name(frm) {
     //     update_full_name(frm);
@@ -48,10 +48,16 @@ function create_user(frm){
 }
 
 
-// frappe.listview_settings['student'] = {
-//     onload: function(listview) {
-//         listview.page.add_inner_button('Add Student', function() {
-//             frappe.new_doc('Student');
-//         }, 'Create');
-//     }
-// };
+
+frappe.listview_settings['Customer'] = {
+
+    onload: function (listview) {
+
+        // Add a button for doing something useful.
+        listview.page.add_inner_button(__("Name of My Button"), function () {
+            some_js_function(listview);  // change to your function's name
+        })
+        .addClass("btn-warning").css({'color':'darkred','font-weight': 'normal'});
+        // The .addClass above is optional.  It just adds styles to the button.
+    }
+};

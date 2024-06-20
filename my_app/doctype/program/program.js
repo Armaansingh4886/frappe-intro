@@ -3,8 +3,14 @@
 
 frappe.ui.form.on("Program", {
 	refresh(frm) {
+        // frm.set_value("program_name","abc");
         
-        
+	},
+	check(frm){
+		if(frm.doc.check){
+		frm.set_value("program_name","abc");}else{
+			frm.set_value("program_name","");
+		}
 	},
 	start_date(frm){
 		check_date(frm)

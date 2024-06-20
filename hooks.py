@@ -28,6 +28,7 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
+doctype_list_js ={"student":"public/js/student_list.js"}
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -230,3 +231,7 @@ app_license = "mit"
 overwrite_whitelisted_methods={
     "my_app.api.requests":"my_app.api.requests"
 }
+
+fixtures = [
+    {"dt": "DocType", "filters": [["name", "in", ["Employee"]]]}
+]
