@@ -50,22 +50,12 @@
 import frappe
 from frappe import _
 
-@frappe.whitelist()
-def requests():
-   
-    method = frappe.local.request.method
-    if method == "GET":
-        return get_items()
-    elif method == "POST":
-        return create_item()
-    elif method == "PUT":
-        return update_item()
-    elif method == "DELETE":
-        return delete_item()
-    else:
-        return {"error": "Invalid request method"}, 405
 
+@frappe.whitelist()
 def get_items():
+    if(frappe.local.request.method != "GET"):
+        # frappe.throw("only post request si accepted")
+        return "only GET request is accepted"
     doctype = frappe.local.form_dict.get('doctype')
     name = frappe.local.form_dict.get("name")
     if not doctype:
@@ -87,8 +77,11 @@ def get_items():
         return all_items
     except Exception as e:
         return {"error": str(e)}, 500
-
+@frappe.whitelist()
 def create_item():
+    if(frappe.local.request.method != "POST"):
+        # frappe.throw("only post request si accepted")
+        return "only POST request is accepted"
     data = frappe.local.form_dict
     doctype = data.get('doctype')
     if not doctype:
@@ -103,8 +96,11 @@ def create_item():
         return doc.as_dict()
     except Exception as e:
         return {"error": str(e)}, 500
-
+@frappe.whitelist()
 def update_item():
+    if(frappe.local.request.method != "PUT"):
+        # frappe.throw("only post request si accepted")
+        return "only PUT request is accepted"
     data = frappe.local.form_dict
     doctype = data.get('doctype')
     name = data.get('name')
@@ -118,8 +114,11 @@ def update_item():
         return doc.as_dict()
     except Exception as e:
         return {"error": str(e)}, 500
-
+@frappe.whitelist()
 def delete_item():
+    if(frappe.local.request.method != "DELETE"):
+        # frappe.throw("only post request si accepted")
+        return "only DELETE request is accepted"
     data = frappe.local.form_dict
     doctype = data.get('doctype')
     name = data.get('name')
@@ -131,3 +130,25 @@ def delete_item():
         return {"message": f"Item {name} deleted successfully"}
     except Exception as e:
         return {"error": str(e)}, 500
+    
+
+
+@ frappe.whitelist()
+def get_users():
+    return frappe.get_all("User",fields=["*"])
+
+
+@ frappe.whitelist()
+def add_user():
+    if(frappe.local.request.method != "POST"):
+        # frappe.throw("only post request si accepted")
+        return "only POST request is accepted"
+    data = frappe.local.form_dict
+    try:
+        user = frappe.get_doc({"doctype":"User",**data})
+        user.insert()
+        frappe.db.commit()
+        return user.as_dict()
+    except Exception as e:
+        return {"error": str(e)},500
+

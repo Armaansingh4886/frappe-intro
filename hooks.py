@@ -229,7 +229,9 @@ doctype_list_js ={"student":"public/js/student_list.js"}
 # }
 
 overwrite_whitelisted_methods={
-    "my_app.api.requests":"my_app.api.requests"
+    "my_app.api.requests":"my_app.api.requests",
+    "my_app.api.get_users":"my_app.api.get_users",
+    # "my_app.api.add_users":"my_app.api.add_users"
 }
 
 fixtures = [
